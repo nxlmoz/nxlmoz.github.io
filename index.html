@@ -143,7 +143,7 @@
         <button class="close-video">&times;</button>
         <div class="video-container">
             <iframe id="youtubePlayer"
-                    src="https://youtu.be/-llMwDW0DPE" 
+                    src="about:blank" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
             </iframe>
@@ -174,7 +174,7 @@
         const closeButton = document.querySelector('.close-video');
 
         // 替換 YOUR_VIDEO_ID 為您的 YouTube 影片 ID
-        const videoId = 'YOUR_VIDEO_ID';
+        const videoId = '-llMwDW0DPE';
 
         watchButton.addEventListener('click', () => {
             youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
