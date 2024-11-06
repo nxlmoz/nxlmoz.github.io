@@ -30,23 +30,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .layer-1 {
-            z-index: 1;
-            transform: translateZ(-1px) scale(2);
-        }
-
-        .layer-2 {
-            z-index: 2;
-            transform: translateZ(-0.5px) scale(1.5);
-        }
-
-        .layer-3 {
-            z-index: 3;
         }
 
         .parallax-image {
@@ -60,6 +43,7 @@
             position: relative;
             z-index: 4;
             text-align: center;
+            padding-top: 20vh;
         }
 
         .cta-button {
@@ -73,6 +57,7 @@
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
             margin: 10px;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -80,7 +65,7 @@
             transform: scale(1.05);
         }
 
-        .video-container {
+        .video-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -93,8 +78,20 @@
             z-index: 1000;
         }
 
-        .video-container.active {
-            display: flex;
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            padding-top: 45%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .close-video {
@@ -104,70 +101,97 @@
             color: white;
             font-size: 30px;
             cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .close-video:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
     <div class="parallax-container">
         <!-- 視差層 -->
-        <div class="parallax-layer layer-1">
+        <div class="parallax-layer">
             <img src="/api/placeholder/1920/1080" alt="Background" class="parallax-image" data-speed="0.1">
         </div>
-        <div class="parallax-layer layer-2">
+        <div class="parallax-layer">
             <img src="/api/placeholder/1920/1080" alt="Middle" class="parallax-image" data-speed="0.2">
         </div>
-        <div class="parallax-layer layer-3">
+        <div class="parallax-layer">
             <img src="/api/placeholder/1920/1080" alt="Foreground" class="parallax-image" data-speed="0.3">
         </div>
 
         <!-- 主要內容 -->
         <div class="content">
             <h1>Glass Heart Games</h1>
-            <a href="#" class="cta-button" id="watchTrailer">觀看預告片</a>
+            <button class="cta-button" id="watchTrailer">觀看預告片</button>
             <a href="https://store.steampowered.com" target="_blank" class="cta-button">立即購買</a>
         </div>
     </div>
 
-    <!-- 影片容器 -->
-    <div class="video-container">
-        <span class="close-video">&times;</span>
-        <video controls width="80%" height="auto">
-            <source src="your-video.mp4" type="video/mp4">
-        </video>
+    <!-- YouTube 影片 Modal -->
+    <div class="video-modal" id="videoModal">
+        <button class="close-video">&times;</button>
+        <div class="video-container">
+            <iframe id="youtubePlayer"
+                    src="https://youtu.be/-llMwDW0DPE" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
     </div>
 
     <script>
         // 視差效果
         document.addEventListener('mousemove', (e) => {
-            const layers = document.querySelectorAll('.parallax-image');
+            const images = document.querySelectorAll('.parallax-image');
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
 
-            layers.forEach(layer => {
-                const speed = parseFloat(layer.getAttribute('data-speed'));
+            images.forEach(image => {
+                const speed = parseFloat(image.getAttribute('data-speed'));
                 const x = (mouseX * speed) * -1;
                 const y = (mouseY * speed) * -1;
-                layer.style.transform = `translate(${x}px, ${y}px)`;
+                image.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
 
-        // 影片功能
-        const videoContainer = document.querySelector('.video-container');
-        const watchButton = document.querySelector('#watchTrailer');
-        const closeVideo = document.querySelector('.close-video');
+        // YouTube 影片控制
+        const videoModal = document.getElementById('videoModal');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+        const watchButton = document.getElementById('watchTrailer');
+        const closeButton = document.querySelector('.close-video');
 
-        watchButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            videoContainer.classList.add('active');
+        // 替換 YOUR_VIDEO_ID 為您的 YouTube 影片 ID
+        const videoId = 'YOUR_VIDEO_ID';
+
+        watchButton.addEventListener('click', () => {
+            youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            videoModal.style.display = 'flex';
         });
 
-        closeVideo.addEventListener('click', () => {
-            videoContainer.classList.remove('active');
-            const video = videoContainer.querySelector('video');
-            video.pause();
-            video.currentTime = 0;
+        closeButton.addEventListener('click', () => {
+            youtubePlayer.src = 'about:blank';
+            videoModal.style.display = 'none';
+        });
+
+        // 點擊背景關閉影片
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                youtubePlayer.src = 'about:blank';
+                videoModal.style.display = 'none';
+            }
         });
     </script>
 </body>
