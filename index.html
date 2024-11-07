@@ -5,65 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glass Heart Games</title>
     <style>
-    /* 讀取畫面樣式 */
-    .loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;  /* 添加過渡效果 */
-    }
-
-    .loading-logo {
-        width: 30vh;
-        height: auto;
-        opacity: 0.3;
-        transition: opacity 0.3s ease;
-    }
-
-    /* 黑色遮罩 */
-    .fade-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        z-index: 11;  /* 在紙張材質效果之上 */
-        opacity: 1;
-        transition: opacity 1s ease;  /* 較慢的淡出效果 */
-        pointer-events: none;
-    }
-    .loading-progress {
-        width: 200px;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.1);
-        position: relative;
-        margin-top: 20px;
-    }
-
-    .loading-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0%;
-        background: #fff;
-        transition: width 0.3s ease;
-    }
-
-    .loading-text {
-        color: #fff;
-        margin-top: 10px;
-        font-size: 14px;
-    }
-</style>
+        /* 讀取畫面樣式 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;  /* 添加過渡效果 */
+        }
+    
+        .loading-logo {
+            width: 30vh;
+            height: auto;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+    
+        /* 黑色遮罩 */
+        .fade-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 11;  /* 在紙張材質效果之上 */
+            opacity: 1;
+            transition: opacity 1s ease;  /* 較慢的淡出效果 */
+            pointer-events: none;
+        }
+        .loading-progress {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin-top: 20px;
+        }
+    
+        .loading-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+    
+        .loading-text {
+            color: #fff;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>                            
     <style>
         * {
             margin: 0;
@@ -156,13 +156,66 @@
         }
         .content {
             position: fixed;
-            bottom: 150px;
-            left: 0;
-            right: 0;
+            left: 150px;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 5;
-            text-align: center;
+            text-align: left;
         }
-
+        /* 添加平台圖標區域 */
+        .platform-icons {
+            position: fixed;
+            right: 150px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 30px;
+        }
+        
+        .platform-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+        
+        .platform-icons img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .platform-icons img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* ESRB logo 樣式 */
+        .esrb-logo {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 5;
+            width: 80px;
+            height: auto;
+        }
+        
+        /* 社群圖標樣式 */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* 分隔線樣式 */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 10px 0;
+        }                
         .cta-button {
             display: inline-block;
             padding: 15px 30px;
@@ -260,6 +313,33 @@
             <button class="cta-button" id="watchTrailer">觀看預告片</button>
             <a href="https://store.steampowered.com" target="_blank" class="cta-button">立即購買</a>
         </div>
+        <!-- ESRB logo -->
+        <img src="./assets/images/esrb.png" alt="ESRB Rating" class="esrb-logo">
+    
+        <!-- 平台和社群圖標區域 -->
+        <div class="platform-icons">
+            <div class="platform-section">
+                <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
+                    <img src="./assets/images/steam-icon.png" alt="Steam">
+                </a>
+                <div class="coming-soon">
+                    <img src="./assets/images/epic-icon.png" alt="Epic Games">
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="social-icons">
+                <a href="https://twitter.com/vigilthegame" target="_blank">
+                    <img src="./assets/images/x-icon.png" alt="X">
+                </a>
+                <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                    <img src="./assets/images/fb-icon.png" alt="Facebook">
+                </a>
+            </div>
+        </div>
+
         <div class="fade-overlay" id="fadeOverlay"></div>
     </div>
 
@@ -335,7 +415,12 @@
                 './assets/images/character.png',
                 './assets/images/middle.png',
                 './assets/images/front.png',
-                './assets/images/canvas.png'
+                './assets/images/canvas.png',
+                './assets/images/steam-icon.png',
+                './assets/images/epic-icon.png',
+                './assets/images/x-icon.png',
+                './assets/images/fb-icon.png',
+                './assets/images/esrb.png'
             ];
         
             let loadedImages = 0;
