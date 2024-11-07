@@ -68,7 +68,8 @@
         .layer-middle {
             z-index: 3;
         }
-        .texture-overlay {
+        /* 選項3：羊皮紙效果 */
+        .texture-overlay-parchment {
             position: fixed;
             top: 0;
             left: 0;
@@ -76,16 +77,24 @@
             height: 100%;
             pointer-events: none;
             z-index: 10;
-            background-image: 
-                /* 更明顯的網格效果 */
-                linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px),
-                /* 添加噪點效果 */
-                url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAA3ElEQVR42gWNB7JUMQwDs2Y9S0ruf9MkqxaaHe9L/pN/8Z8UQf7V//l3BQBZzwEAmv/j31oKQNM1AOj/fAoAsjYAQGj+JwBJ1wBg0P99DQDlNQDIiuQYAQGuXwOQ1H8QoPu3AIj87SHg9C8KmP4nGJD6twRkJsBAPc3/Lv0bQG7+l+L/kbB/A1DiH6X99wQU1v5H0/+UgpL538r5L2D1byWg4/87of5dA4r+A+f/JRH4G+7fjqP4HwNA1r8KUP6XAQD5GwDc/rMDIP0bAZT/ZQtQ/QcAyN8hEP0bAYT+RQC6/7MA3f8A7b8KAA==");
-            opacity: 0.3;
-            mix-blend-mode: multiply;
+            background: 
+                linear-gradient(
+                    135deg,
+                    rgba(255, 245, 230, 0.2) 0%,
+                    transparent 100%
+                ),
+                repeating-radial-gradient(
+                    circle at 50% 50%,
+                    rgba(244, 215, 185, 0.1) 0%,
+                    rgba(244, 215, 185, 0.1) 3px,
+                    transparent 3px,
+                    transparent 6px
+                );
+            opacity: 0.6;
+            mix-blend-mode: soft-light;
         }
-
+        
+        /* 加強陰影效果 */
         .paper-shadow {
             position: fixed;
             top: 0;
@@ -95,8 +104,8 @@
             pointer-events: none;
             z-index: 9;
             box-shadow: 
-                inset 0 0 50px rgba(0,0,0,0.1),
-                inset 0 0 100px rgba(0,0,0,0.05);
+                inset 0 0 100px rgba(0,0,0,0.2),
+                inset 0 0 200px rgba(0,0,0,0.1);
         }
         .content {
             position: fixed;
