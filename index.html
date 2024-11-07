@@ -22,9 +22,6 @@
             position: relative;
             height: 100vh;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .parallax-layer {
@@ -33,17 +30,17 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            padding-top: 40px; /* 調整這個值可以改變和頂部的距離 */
         }
 
         .parallax-image {
             max-width: 90%; /* 圖片最大寬度 */
-            max-height: 90vh; /* 圖片最大高度 */
+            max-height: 70vh; /* 圖片最大高度 */
             object-fit: contain; /* 保持圖片比例 */
             transition: transform 0.1s ease-out;
+            transform-origin: top center; /* 設定變形的原點在頂部中央 */
         }
 
-        /* 為不同圖層設定不同的 z-index */
         .layer-bg {
             z-index: 1;
         }
@@ -61,7 +58,10 @@
         }
 
         .content {
-            position: relative;
+            position: fixed; /* 改為固定位置 */
+            bottom: 40px; /* 距離底部的距離 */
+            left: 0;
+            right: 0;
             z-index: 5;
             text-align: center;
         }
@@ -85,7 +85,6 @@
             transform: scale(1.05);
         }
 
-        /* YouTube Modal 樣式 */
         .video-modal {
             position: fixed;
             top: 0;
@@ -125,28 +124,43 @@
             background: none;
             border: none;
         }
+
+        /* 新增：確保圖片在小螢幕上也能正確顯示 */
+        @media (max-height: 700px) {
+            .parallax-layer {
+                padding-top: 20px;
+            }
+            
+            .parallax-image {
+                max-height: 60vh;
+            }
+
+            .content {
+                bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="parallax-container">
         <!-- 背景層 -->
         <div class="parallax-layer layer-bg">
-            <img src="./assets/images/background.png" alt="background" class="parallax-image" data-speed="0">
+            <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="0.1">
         </div>
         
         <!-- 角色層 -->
         <div class="parallax-layer layer-character">
-            <img src="./assets/images/character.png" alt="character" class="parallax-image" data-speed="0.033">
+            <img src="./assets/images/character.png" alt="Character" class="parallax-image" data-speed="0.15">
         </div>
 
         <!-- 中間層 -->
         <div class="parallax-layer layer-middle">
-            <img src="./assets/images/middle.png" alt="middle" class="parallax-image" data-speed="0.066">
+            <img src="./assets/images/middle.png" alt="Middle" class="parallax-image" data-speed="0.2">
         </div>
 
         <!-- 前景層 -->
         <div class="parallax-layer layer-front">
-            <img src="./assets/images/foreground.png" alt="foreground" class="parallax-image" data-speed="0.1">
+            <img src="./assets/images/front.png" alt="Foreground" class="parallax-image" data-speed="0.3">
         </div>
 
         <!-- 主要內容 -->
@@ -192,7 +206,6 @@
         const watchButton = document.getElementById('watchTrailer');
         const closeButton = document.querySelector('.close-video');
 
-        // 替換成您的 YouTube 影片 ID
         const videoId = '-llMwDW0DPE';
 
         watchButton.addEventListener('click', () => {
