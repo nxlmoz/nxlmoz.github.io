@@ -77,22 +77,13 @@
             pointer-events: none;
             z-index: 10;
             background-image: 
-                repeating-radial-gradient(
-                    circle at 50% 50%,
-                    rgba(255,255,255,0.1),
-                    rgba(255,255,255,0.1) 1px,
-                    transparent 1px,
-                    transparent 100%
-                ),
-                repeating-linear-gradient(
-                    45deg,
-                    rgba(255,255,255,0.05) 0px,
-                    rgba(255,255,255,0.05) 1px,
-                    transparent 1px,
-                    transparent 2px
-                );
-            opacity: 0.7;
-            mix-blend-mode: overlay;
+                /* 更明顯的網格效果 */
+                linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px),
+                /* 添加噪點效果 */
+                url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAA3ElEQVR42gWNB7JUMQwDs2Y9S0ruf9MkqxaaHe9L/pN/8Z8UQf7V//l3BQBZzwEAmv/j31oKQNM1AOj/fAoAsjYAQGj+JwBJ1wBg0P99DQDlNQDIiuQYAQGuXwOQ1H8QoPu3AIj87SHg9C8KmP4nGJD6twRkJsBAPc3/Lv0bQG7+l+L/kbB/A1DiH6X99wQU1v5H0/+UgpL538r5L2D1byWg4/87of5dA4r+A+f/JRH4G+7fjqP4HwNA1r8KUP6XAQD5GwDc/rMDIP0bAZT/ZQtQ/QcAyN8hEP0bAYT+RQC6/7MA3f8A7b8KAA==");
+            opacity: 0.3;
+            mix-blend-mode: multiply;
         }
 
         .paper-shadow {
