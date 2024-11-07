@@ -30,19 +30,32 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            padding-top: 0px; /* 調整這個值可以改變和頂部的距離 */
+            align-items: flex-start; /* 改為頂部對齊 */
+        }
+
+        /* 為背景層單獨設置樣式 */
+        .layer-bg {
+            z-index: 1;
+        }
+
+        .layer-bg .parallax-image {
+            margin-top: 0; /* 移除頂部間距 */
+        }
+
+        /* 為其他層設置通用樣式 */
+        .layer-character,
+        .layer-middle,
+        .layer-front {
+            align-items: center; /* 保持其他層居中 */
         }
 
         .parallax-image {
-            max-width: 90%; /* 圖片最大寬度 */
-            max-height: 70vh; /* 圖片最大高度 */
-            object-fit: contain; /* 保持圖片比例 */
+            width: auto; /* 讓寬度自適應 */
+            height: auto; /* 讓高度自適應 */
+            max-width: 90%; /* 限制最大寬度 */
+            max-height: 70vh; /* 限制最大高度 */
+            object-fit: contain; /* 保持原始比例 */
             transition: transform 0.1s ease-out;
-            transform-origin: top center; /* 設定變形的原點在頂部中央 */
-        }
-
-        .layer-bg {
-            z-index: 1;
         }
 
         .layer-character {
@@ -58,8 +71,8 @@
         }
 
         .content {
-            position: fixed; /* 改為固定位置 */
-            bottom: 40px; /* 距離底部的距離 */
+            position: fixed;
+            bottom: 40px;
             left: 0;
             right: 0;
             z-index: 5;
@@ -125,12 +138,7 @@
             border: none;
         }
 
-        /* 新增：確保圖片在小螢幕上也能正確顯示 */
         @media (max-height: 700px) {
-            .parallax-layer {
-                padding-top: 0px;
-            }
-            
             .parallax-image {
                 max-height: 60vh;
             }
@@ -142,28 +150,24 @@
     </style>
 </head>
 <body>
+    <!-- 其餘 HTML 内容保持不變 -->
     <div class="parallax-container">
-        <!-- 背景層 -->
         <div class="parallax-layer layer-bg">
             <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="0">
         </div>
         
-        <!-- 角色層 -->
         <div class="parallax-layer layer-character">
             <img src="./assets/images/character.png" alt="Character" class="parallax-image" data-speed="0.01">
         </div>
 
-        <!-- 中間層 -->
         <div class="parallax-layer layer-middle">
             <img src="./assets/images/middle.png" alt="Middle" class="parallax-image" data-speed="0.02">
         </div>
 
-        <!-- 前景層 -->
         <div class="parallax-layer layer-front">
             <img src="./assets/images/front.png" alt="Foreground" class="parallax-image" data-speed="0.03">
         </div>
 
-        <!-- 主要內容 -->
         <div class="content">
             <h1>Glass Heart Games</h1>
             <button class="cta-button" id="watchTrailer">觀看預告片</button>
@@ -171,7 +175,6 @@
         </div>
     </div>
 
-    <!-- YouTube Modal -->
     <div class="video-modal" id="videoModal">
         <button class="close-video">&times;</button>
         <div class="video-container">
@@ -184,7 +187,6 @@
     </div>
 
     <script>
-        // 視差效果
         document.addEventListener('mousemove', (e) => {
             const images = document.querySelectorAll('.parallax-image');
             const centerX = window.innerWidth / 2;
@@ -200,7 +202,6 @@
             });
         });
 
-        // YouTube 影片控制
         const videoModal = document.getElementById('videoModal');
         const youtubePlayer = document.getElementById('youtubePlayer');
         const watchButton = document.getElementById('watchTrailer');
