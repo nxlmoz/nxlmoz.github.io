@@ -30,34 +30,34 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* 改為頂部對齊 */
+            align-items: center;
         }
 
         /* 為背景層單獨設置樣式 */
         .layer-bg {
             z-index: 1;
         }
-
         .layer-bg .parallax-image {
-            margin-top: 0; /* 移除頂部間距 */
+            height: 100vh; /* 讓背景圖高度填滿視窗 */
+            width: auto;
+            object-fit: contain;
+            margin-top: 0;
         }
 
         /* 為其他層設置通用樣式 */
-        .layer-character,
-        .layer-middle,
-        .layer-front {
-            align-items: center; /* 保持其他層居中 */
+        .layer-character .parallax-image,
+        .layer-middle .parallax-image,
+        .layer-front .parallax-image {
+            height: 100vh; /* 和背景圖保持相同高度 */
+            width: auto;
+            object-fit: contain;
         }
+
 
         .parallax-image {
-            width: auto; /* 讓寬度自適應 */
-            height: auto; /* 讓高度自適應 */
-            max-width: 90%; /* 限制最大寬度 */
-            max-height: 70vh; /* 限制最大高度 */
-            object-fit: contain; /* 保持原始比例 */
+            max-width: 100%;
             transition: transform 0.1s ease-out;
         }
-
         .layer-character {
             z-index: 2;
         }
@@ -137,14 +137,11 @@
             background: none;
             border: none;
         }
-
-        @media (max-height: 700px) {
+        @media (max-aspect-ratio: 16/9) {
+            /* 在較窄的螢幕上調整 */
             .parallax-image {
-                max-height: 60vh;
-            }
-
-            .content {
-                bottom: 20px;
+                width: 90%;
+                height: auto;
             }
         }
     </style>
