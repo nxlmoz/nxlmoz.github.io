@@ -30,33 +30,27 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: top; /* 統一使用居中對齊 */
         }
 
         /* 為背景層單獨設置樣式 */
         .layer-bg {
             z-index: 1;
+            align-items: flex-start;
         }
-        .layer-bg .parallax-image {
-            height: 100vh; /* 讓背景圖高度填滿視窗 */
-            width: auto;
-            object-fit: contain;
-            margin-top: 0;
+        .layer-middle .parallax-image {
+            max-height: 70vh;
+            object-fit: none;
+            transform-origin: center center;
+            scale: 1; /* 確保不會被放大 */
         }
-
-        /* 為其他層設置通用樣式 */
-        .layer-character .parallax-image,
-        .layer-middle .parallax-image,
-        .layer-front .parallax-image {
-            height: 100vh; /* 和背景圖保持相同高度 */
-            width: auto;
-            object-fit: contain;
-            margin-top: 0;
-        }
-
 
         .parallax-image {
-            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-width: 90%;
+            max-height: 70vh;
+            object-fit: none; /* 改變為 none，避免自動縮放 */
             transition: transform 0.1s ease-out;
         }
         .layer-character {
