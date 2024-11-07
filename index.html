@@ -30,39 +30,38 @@
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center; /* 統一使用居中對齊 */
+            align-items: center;
         }
 
-        /* 為背景層單獨設置樣式 */
-        .layer-bg {
-            z-index: 1;
-            align-items: flex-start;
-        }
-        .layer-middle .parallax-image {
-            /*max-height: 100vh;*/
-            object-fit: none;
-            transform-origin: center center;
-            scale: 1; /* 確保不會被放大 */
+        /* 讓前景層作為基準 */
+        .layer-front {
+            z-index: 4;
         }
 
-        .parallax-image {
+        .layer-front .parallax-image {
+            height: 100vh;
             width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100vh;
-            object-fit: none; /* 改變為 none，避免自動縮放 */
+            object-fit: contain;
+        }
+
+        /* 其他層級跟隨前景層的大小 */
+        .parallax-image {
+            height: 100vh;
+            width: auto;
+            object-fit: contain;
             transition: transform 0.1s ease-out;
         }
+
+        .layer-bg {
+            z-index: 1;
+        }
+
         .layer-character {
             z-index: 2;
         }
 
         .layer-middle {
             z-index: 3;
-        }
-
-        .layer-front {
-            z-index: 4;
         }
 
         .content {
@@ -93,6 +92,7 @@
             transform: scale(1.05);
         }
 
+        /* 視頻模態框樣式保持不變 */
         .video-modal {
             position: fixed;
             top: 0;
@@ -132,32 +132,31 @@
             background: none;
             border: none;
         }
+
         @media (max-aspect-ratio: 16/9) {
-            /* 在較窄的螢幕上調整 */
             .parallax-image {
-                width: 90%;
+                width: 100%;
                 height: auto;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 其餘 HTML 内容保持不變 -->
     <div class="parallax-container">
         <div class="parallax-layer layer-bg">
-            <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="0">
+            <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="-0.03">
         </div>
         
         <div class="parallax-layer layer-character">
-            <img src="./assets/images/character.png" alt="Character" class="parallax-image" data-speed="0.01">
+            <img src="./assets/images/character.png" alt="Character" class="parallax-image" data-speed="-0.02">
         </div>
 
         <div class="parallax-layer layer-middle">
-            <img src="./assets/images/middle.png" alt="Middle" class="parallax-image" data-speed="0.02">
+            <img src="./assets/images/middle.png" alt="Middle" class="parallax-image" data-speed="-0.01">
         </div>
 
         <div class="parallax-layer layer-front">
-            <img src="./assets/images/front.png" alt="Foreground" class="parallax-image" data-speed="0.03">
+            <img src="./assets/images/front.png" alt="Foreground" class="parallax-image" data-speed="0">
         </div>
 
         <div class="content">
@@ -186,14 +185,24 @@
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
 
+            // 計算最大移動距離（相對於視窗大小）
+            const maxMove = Math.min(window.innerWidth, window.innerHeight) * 0.05;
+
             images.forEach(image => {
                 const speed = parseFloat(image.getAttribute('data-speed'));
-                const x = (mouseX * speed) * -1;
-                const y = (mouseY * speed) * -1;
+                
+                // 限制最大移動距離
+                const limitedX = Math.min(Math.max(mouseX * speed, -maxMove), maxMove);
+                const limitedY = Math.min(Math.max(mouseY * speed, -maxMove), maxMove);
+
+                const x = limitedX;  // 移除 -1 倍數，因為我們現在用負數的 speed
+                const y = limitedY;
+                
                 image.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
 
+        // 視頻控制代碼保持不變
         const videoModal = document.getElementById('videoModal');
         const youtubePlayer = document.getElementById('youtubePlayer');
         const watchButton = document.getElementById('watchTrailer');
