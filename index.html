@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glass Heart Games</title>
     <style>
+    .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loading-logo {
+        width: 100px;  /* 根據您的 LOGO 調整大小 */
+        height: 100px;
+        margin-bottom: 20px;
+        opacity: 0.3;
+        transition: opacity 0.3s ease;
+    }
+
+    .loading-progress {
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .loading-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background: #fff;
+        transition: width 0.3s ease;
+    }
+
+    .loading-text {
+        color: #fff;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+</style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -173,6 +220,14 @@
 
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">
+        <img src="./assets/images/logo.png" alt="Logo" class="loading-logo" id="loadingLogo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loadingBar"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Loading... 0%</div>
+    </div>
+
     <div class="parallax-container">
         <div class="parallax-layer layer-bg">
             <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="-0.03">
@@ -258,6 +313,68 @@
                 videoModal.style.display = 'none';
             }
         });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingBar = document.getElementById('loadingBar');
+        const loadingText = document.getElementById('loadingText');
+        const loadingLogo = document.getElementById('loadingLogo');
+    
+        // 需要加載的圖片路徑
+        const imagePaths = [
+            './assets/images/background.png',
+            './assets/images/character.png',
+            './assets/images/middle.png',
+            './assets/images/front.png',
+            './assets/images/canvas.png'
+            // 添加其他需要預加載的圖片
+        ];
+    
+        let loadedImages = 0;
+        const totalImages = imagePaths.length;
+    
+        // 更新加載進度
+        function updateProgress() {
+            const progress = (loadedImages / totalImages) * 100;
+            loadingBar.style.width = `${progress}%`;
+            loadingText.textContent = `Loading... ${Math.round(progress)}%`;
+            loadingLogo.style.opacity = 0.3 + (progress / 100) * 0.7; // Logo 隨進度變亮
+        }
+    
+        // 加載所有圖片
+        function preloadImages() {
+            return Promise.all(imagePaths.map(path => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedImages++;
+                        updateProgress();
+                        resolve(img);
+                    };
+                    img.onerror = reject;
+                    img.src = path;
+                });
+            }));
+        }
+    
+        // 開始加載
+        preloadImages()
+            .then(() => {
+                // 所有圖片加載完成
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            })
+            .catch(error => {
+                console.error('Error loading images:', error);
+                // 處理加載錯誤
+                loadingText.textContent = 'Error loading images. Please refresh.';
+            });
+    });
     </script>
 </body>
 </html>
