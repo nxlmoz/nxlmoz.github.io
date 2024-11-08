@@ -187,7 +187,7 @@
         /* 平台資訊區域樣式 */
         .platforms-section {
             position: fixed;
-            bottom: 100px; /* 調整距離底部的距離 */
+            bottom: 150px; /* 往上調整 50px */
             left: 0;
             right: 0;
             display: flex;
@@ -199,19 +199,28 @@
         
         .platform-group {
             display: flex;
-            align-items: center;
-            gap: 50px; /* 增加間距 */
+            align-items: flex-start;
+            gap: 50px;
+            position: relative;
         }
         
         .platform-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px; /* 往下移動，製造 V 字型效果 */
+        }
+            
         .platform-text {
-            color: #FFD700; /* 金色 */
+            color: #FFD700;
             font-size: 16px;
             font-weight: 200;
             letter-spacing: 4px;
@@ -364,14 +373,16 @@
                 </div>
             </div>
     
-            <span class="platform-text">FOLLOW US</span>
-            <div class="platform-icons">
-                <a href="https://twitter.com/vigilthegame" target="_blank">
-                    <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
-                </a>
-                <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
-                    <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
-                </a>
+            <div class="social-section">
+                <span class="platform-text">FOLLOW US</span>
+                <div class="platform-icons">
+                    <a href="https://twitter.com/vigilthegame" target="_blank">
+                        <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
+                    </a>
+                    <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                        <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
+                    </a>
+                </div>
             </div>
     
             <div class="platform-item">
