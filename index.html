@@ -163,12 +163,20 @@
             text-align: left;
         }
         
-        .vigil-icon {
-            width: auto;
-            height: auto;
-            top: 100;
-            transition: transform 0.3s ease;
+        /* Vigil Logo 樣式 */
+        .vigil-logo-container {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 11;
         }
+        
+        .vigil-logo {
+            height: auto;
+            width: 300px; /* 可以根據需要調整大小 */
+        }
+
         /* 平台資訊區域樣式 */
         .platform-info {
             position: fixed;
@@ -234,22 +242,21 @@
         /* 版權宣告區域樣式 */
         .copyright-section {
             position: fixed;
-            bottom: 20px;  /* 距離底部的距離 */
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             align-items: center;
             gap: 10px;
             z-index: 11;
-            opacity: 0.7;  /* 稍微透明一點 */
-        }
-        
-        .copyright-section img {
-            height: 20px;  /* logo 高度 */
-            width: auto;
             opacity: 0.7;
         }
         
+        .copyright-section img {
+            height: 20px;
+            width: auto;
+        }
+                
         .copyright-text {
             color: white;
             font-size: 12px;  /* 小字 */
@@ -331,7 +338,9 @@
     </div>
 
     <div class="parallax-container">
-
+        <div class="vigil-logo-container">
+            <img src="./assets/images/vigillogo.png" alt="Vigil Logo" class="vigil-logo">
+        </div>
         <div class="parallax-layer layer-bg">
             <img src="./assets/images/background.png" alt="Background" class="parallax-image" data-speed="-0.03">
         </div>
@@ -389,11 +398,8 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="vigil-icon">
-                <img src="./assets/images/vigillogo.png" alt="vigilLogo" class="vigil-icon">
-            </div>
         </div>
+        <!-- 修正版權宣告區域 -->
         <div class="copyright-section">
             <img src="./assets/images/glassheartlogo.png" alt="Glass Heart Games Logo">
             <span class="copyright-text">© 2024 glassheart ltd. all rights reserved</span>
@@ -478,8 +484,8 @@
                 './assets/images/epic-icon.png',
                 './assets/images/x-icon.png',
                 './assets/images/fb-icon.png',
-                './assets/images/esrb.png'
-                './assets/images/glassheartlogo.png'
+                './assets/images/esrb.png',
+                './assets/images/glassheartlogo.png',
                 './assets/images/vigillogo.png' 
             ];
         
