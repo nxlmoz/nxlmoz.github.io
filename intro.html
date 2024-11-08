@@ -76,7 +76,7 @@
             padding: 0 20px;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
+            transition: all 0.5s ease; /* 簡化為單一過渡效果 */
             margin-top: -15vh; /* 新增：整體往上移 */
         }
 
@@ -345,27 +345,33 @@
                     const content = section.querySelector('.content');
                     const background = section.querySelector('.background-image');
                     
-                    // 添加淡出動畫
                     if (i === currentSection) {
-                        content.style.transition = 'opacity 0.5s ease-out';
-                        background.style.transition = 'opacity 0.5s ease-out';
+                        // 當前區段淡出時，同時向下移動
                         content.style.opacity = '0';
+                        content.style.transform = 'translateY(20px)';
                         background.style.opacity = '0';
                     }
                     
                     setTimeout(() => {
                         if (i === index) {
                             section.classList.add('active');
-                            content.classList.add('active');
-                            background.classList.add('active');
-                            content.style.opacity = '1';
-                            background.style.opacity = '1';
+                            // 新區段淡入時，從略微上方開始
+                            content.style.transform = 'translateY(-20px)';
+                            content.style.opacity = '0';
+                            
+                            // 短暫延遲後開始向下淡入
+                            setTimeout(() => {
+                                content.style.transform = 'translateY(0)';
+                                content.style.opacity = '1';
+                                background.style.opacity = '1';
+                            }, 50);
+                            
                         } else {
                             section.classList.remove('active');
                             content.classList.remove('active');
                             background.classList.remove('active');
                         }
-                    }, i === currentSection ? 500 : 0);
+                    }, i === currentSection ? 300 : 0); // 縮短切換時間
                 });
             
                 // 更新當前區段
@@ -380,18 +386,18 @@
                     homeButton.classList.remove('visible');
                 }
             }
-
+            
             function handleScroll(event) {
                 if (isScrolling) return;
-
+            
                 isScrolling = true;
                 setTimeout(() => {
                     isScrolling = false;
-                }, 1000);
-
+                }, 800); // 從 1000 改為 800，使滾動更順暢
+            
                 const direction = event.deltaY > 0 ? 1 : -1;
                 const nextSection = Math.min(Math.max(currentSection + direction, 0), sections.length - 1);
-
+            
                 if (nextSection !== currentSection) {
                     currentSection = nextSection;
                     showSection(currentSection);
