@@ -224,7 +224,7 @@
         }
         
         .platform-icon {
-            width: auto;
+            width: 60px;
             height: auto;
             transition: transform 0.3s ease;
         }
@@ -276,10 +276,13 @@
             border-radius: 25px;
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
-            margin: 10px;
+            font-size: 24px;  /* 保持原來的大小 */
+            min-width: auto;  /* 移除固定寬度，讓按鈕跟隨內容 */
             cursor: pointer;
+            text-align: center;
+            letter-spacing: 1px;
         }
-
+        
         .cta-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
