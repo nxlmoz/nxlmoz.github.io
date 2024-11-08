@@ -193,20 +193,20 @@
             transform: scale(1.1);
         }
         /* Coming Soon 文字 */
-.coming-soon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-}
-
-/* 分隔線 */
-.divider {
-    width: 200px;  /* 加長分隔線 */
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
-    margin: 10px 0;
-}
+        .coming-soon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        /* 分隔線 */
+        .divider {
+            width: 200px;  /* 加長分隔線 */
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 10px 0;
+        }
         /* ESRB logo 樣式 */
         .esrb-logo {
             position: fixed;
@@ -217,10 +217,11 @@
             height: auto;
         }
         
-        /* 社群圖標樣式 */
+        /* 社群圖標容器 */
         .social-icons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
         
         /* 分隔線樣式 */
@@ -326,6 +327,37 @@
             <h1>Glass Heart Games</h1>
             <button class="cta-button" id="watchTrailer">TRAILER</button>
             <a href="https://store.steampowered.com" target="_blank" class="cta-button">INTRO</a>
+        </div>
+        <div class="platform-info">
+            <div class="available-section">
+                <div class="section-title">NOW AVAILABLE ON</div>
+                <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
+                    <img src="./assets/images/steam-icon.png" alt="Steam" class="platform-icon">
+                </a>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="coming-section">
+                <div class="coming-soon">
+                    <img src="./assets/images/epic-icon.png" alt="Epic Games" class="platform-icon">
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="social-section">
+                <div class="section-title">FOLLOW US ON</div>
+                <div class="social-icons">
+                    <a href="https://twitter.com/vigilthegame" target="_blank">
+                        <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
+                    </a>
+                    <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                        <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- ESRB logo -->
         <img src="./assets/images/esrb.png" alt="ESRB Rating" class="esrb-logo">
