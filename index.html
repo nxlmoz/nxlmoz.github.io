@@ -162,50 +162,58 @@
             z-index: 5;
             text-align: left;
         }
-        /* 添加平台圖標區域 */
-        .platform-icons {
+        /* 平台資訊區域樣式 */
+        .platform-info {
             position: fixed;
             right: 150px;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 11;
+            z-index: 11;  /* 調整為 11 */
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 30px;
+            gap: 30px;  /* 區塊之間的間距 */
         }
         
-        .platform-section {
+        /* 區塊樣式 */
+        .info-section {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
+            align-items: center;
+            gap: 20px;
+            font-size: 24px;  /* 統一文字大小 */
         }
-        
-        .platform-icons img {
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
+
+        /* 圖標樣式 */
+        .platform-icon {
+            width: 40px;
+            height: 40px;
             transition: transform 0.3s ease;
         }
         
-        .platform-icons img:hover {
+        .platform-icon:hover {
             transform: scale(1.1);
         }
-        /* Coming Soon 文字 */
+        
+        /* Coming Soon 文字和圖標的容器 */
         .coming-soon {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             font-size: 24px;
+        }
+        
+        /* 社群圖標容器 */
+        .social-icons {
+            display: flex;
+            gap: 20px;
         }
         
         /* 分隔線 */
         .divider {
-            width: 200px;  /* 加長分隔線 */
+            width: 200px;
             height: 1px;
             background: rgba(255, 255, 255, 0.3);
-            margin: 10px 0;
+            margin: 15px 0;
         }
         /* ESRB logo 樣式 */
         .esrb-logo {
@@ -215,22 +223,7 @@
             z-index: 5;
             width: 15vh;
             height: auto;
-        }
-        
-        /* 社群圖標容器 */
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        /* 分隔線樣式 */
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-            margin: 10px 0;
-        }                
+        }        
         .cta-button {
             display: inline-block;
             padding: 15px 30px;
@@ -363,26 +356,36 @@
         <img src="./assets/images/esrb.png" alt="ESRB Rating" class="esrb-logo">
     
         <!-- 平台和社群圖標區域 -->
-        <div class="platform-icons">
-            <div class="platform-section">
+        <div class="platform-info">
+            <!-- Available Section -->
+            <div class="info-section">
+                <span>NOW AVAILABLE ON</span>
                 <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
-                    <img src="./assets/images/steam-icon.png" alt="Steam">
+                    <img src="./assets/images/steam-icon.png" alt="Steam" class="platform-icon">
                 </a>
-                <div class="coming-soon">
-                    <img src="./assets/images/epic-icon.png" alt="Epic Games">
-                    <span>Coming Soon</span>
-                </div>
             </div>
             
             <div class="divider"></div>
             
-            <div class="social-icons">
-                <a href="https://twitter.com/vigilthegame" target="_blank">
-                    <img src="./assets/images/x-icon.png" alt="X">
-                </a>
-                <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
-                    <img src="./assets/images/fb-icon.png" alt="Facebook">
-                </a>
+            <!-- Coming Soon Section -->
+            <div class="info-section">
+                <span>COMING SOON ON</span>
+                <img src="./assets/images/epic-icon.png" alt="Epic Games" class="platform-icon">
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Social Section -->
+            <div class="info-section">
+                <span>FOLLOW US ON</span>
+                <div class="social-icons">
+                    <a href="https://twitter.com/vigilthegame" target="_blank">
+                        <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
+                    </a>
+                    <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                        <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
+                    </a>
+                </div>
             </div>
         </div>
 
