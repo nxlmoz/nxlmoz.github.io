@@ -21,11 +21,21 @@
         .section {
             height: 100vh;
             width: 100vw;
-            position: relative;
+            position: fixed; /* 改為 fixed */
+            top: 0;
+            left: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .section.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .background-image {
@@ -37,14 +47,27 @@
             opacity: 0;
             transition: opacity 1s ease;
             z-index: 1;
+            display: flex;  /* 添加這行 */
+            justify-content: center;  /* 添加這行 */
+            align-items: center;  /* 添加這行 */
+            overflow: hidden;  /* 添加這行 */
         }
-
+        
         .background-image img {
-            width: 100vh;
-            height: auto;
-            object-fit: cover;
+            width: auto;
+            height: 100vh; /* 設定高度為螢幕高度 */
+            min-width: 100%; /* 確保最小寬度填滿容器 */
+            object-fit: cover; /* 保持比例填滿 */
+            object-position: center; /* 圖片置中 */
         }
 
+        /* 針對寬螢幕的情況 */
+        @media (min-aspect-ratio: 16/9) {
+            .background-image img {
+                width: 100%;
+                height: auto;
+            }
+        }
         .content {
             position: relative;
             z-index: 2;
@@ -299,18 +322,17 @@
 
             function showSection(index) {
                 sections.forEach((section, i) => {
-                    const content = section.querySelector('.content');
-                    const background = section.querySelector('.background-image');
-                    
                     if (i === index) {
-                        content.classList.add('active');
-                        background.classList.add('active');
+                        section.classList.add('active');
+                        section.querySelector('.content').classList.add('active');
+                        section.querySelector('.background-image').classList.add('active');
                     } else {
-                        content.classList.remove('active');
-                        background.classList.remove('active');
+                        section.classList.remove('active');
+                        section.querySelector('.content').classList.remove('active');
+                        section.querySelector('.background-image').classList.remove('active');
                     }
                 });
-
+            
                 // 在最後一個section顯示平台資訊和HOME按鈕
                 if (index === sections.length - 1) {
                     platformsSection.classList.add('visible');
