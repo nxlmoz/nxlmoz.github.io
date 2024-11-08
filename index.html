@@ -128,11 +128,6 @@
         .layer-middle {
             z-index: 3;
         }
-        .layer-logo {
-            width: auto;
-            height: auto;
-            top: 100;
-        }
         .texture-overlay {
             position: fixed;
             top: 0;
@@ -166,6 +161,13 @@
             transform: translateY(-50%);
             z-index: 5;
             text-align: left;
+        }
+        
+        .vigil-icon {
+            width: auto;
+            height: auto;
+            top: 100;
+            transition: transform 0.3s ease;
         }
         /* 平台資訊區域樣式 */
         .platform-info {
@@ -345,9 +347,6 @@
         <div class="parallax-layer layer-front">
             <img src="./assets/images/front.png" alt="Foreground" class="parallax-image" data-speed="0">
         </div>
-        <div class="parallax-layer layer-logo">
-            <img src="./assets/images/vigillogo.png" alt="VigilLogo" class="parallax-image" data-speed="0">
-        </div>
         <div class="paper-shadow"></div>
         <div class="texture-overlay"></div>
         <div class="content">
@@ -389,6 +388,10 @@
                         <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
                     </a>
                 </div>
+            </div>
+            
+            <div class="vigil-icon">
+                <img src="./assets/images/vigillogo.png" alt="vigilLogo" class="vigil-icon">
             </div>
         </div>
         <div class="copyright-section">
