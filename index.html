@@ -258,16 +258,18 @@
         .copyright-section {
             position: fixed;
             bottom: 20px;
-            left: 0;
-            right: 0;
-            padding: 0 20px; /* 新增：左右留點空間 */
-            transform: translateX(-50%);
+            left: 50%; /* 保持 */
+            padding: 0 20px;
+            transform: translateX(-50%); /* 保持 */
             display: flex;
+            justify-content: center; /* 新增 */
             align-items: center;
             gap: 15px;
             z-index: 11;
             opacity: 0.7;
-            white-space: nowrap; /* 新增：防止換行 */
+            white-space: nowrap;
+            width: fit-content; /* 新增：讓寬度跟隨內容 */
+            min-width: min-content; /* 新增：確保最小寬度 */
         }
         
         .copyright-section img {
@@ -349,6 +351,20 @@
             .parallax-image {
                 width: 100%;
                 height: auto;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .copyright-section {
+                padding: 0 10px;
+                transform: translateX(-50%) scale(0.9); /* 在手機版略微縮小 */
+            }
+            
+            .copyright-section img {
+                height: 25px; /* 手機版略微縮小 logo */
+            }
+            
+            .copyright-text {
+                font-size: 11px; /* 手機版略微縮小文字 */
             }
         }
     </style>
