@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigil: The Longest Night - Intro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .section {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 1;
+        }
+
+        .background-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .background-image.active {
+            opacity: 1;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* 平台資訊區域樣式 */
+        .platforms-section {
+            position: fixed;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 11;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .platforms-section.visible {
+            opacity: 1;
+        }
+
+        .platform-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            position: relative;
+        }
+
+        .platform-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .platform-text {
+            color: #FFD700;
+            font-size: 16px;
+            font-weight: 100;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .platform-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .platform-icon {
+            width: 45px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .platform-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* 版權區域 */
+        .copyright-section {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 11;
+            opacity: 0.7;
+        }
+
+        .copyright-section img {
+            height: 30px;
+            width: auto;
+        }
+
+        .copyright-text {
+            color: white;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section" id="section1">
+        <div class="background-image">
+            <img src="./assets/images/intro1.jpg" alt="Background 1">
+        </div>
+        <div class="content">
+            <h2>Title 1</h2>
+            <p>First section content goes here...</p>
+        </div>
+    </div>
+
+    <div class="section" id="section2">
+        <div class="background-image">
+            <img src="./assets/images/intro2.jpg" alt="Background 2">
+        </div>
+        <div class="content">
+            <h2>Title 2</h2>
+            <p>Second section content goes here...</p>
+        </div>
+    </div>
+
+    <div class="section" id="section3">
+        <div class="background-image">
+            <img src="./assets/images/intro3.jpg" alt="Background 3">
+        </div>
+        <div class="content">
+            <h2>Title 3</h2>
+            <p>Third section content goes here...</p>
+        </div>
+    </div>
+
+    <div class="section" id="section4">
+        <div class="background-image">
+            <img src="./assets/images/intro4.jpg" alt="Background 4">
+        </div>
+        <div class="content">
+            <h2>Title 4</h2>
+            <p>Fourth section content goes here...</p>
+        </div>
+    </div>
+
+    <div class="section" id="section5">
+        <div class="background-image">
+            <img src="./assets/images/intro5.jpg" alt="Background 5">
+        </div>
+        <div class="content">
+            <h2>Title 5</h2>
+            <p>Fifth section content goes here...</p>
+            <a href="index.html" class="cta-button">HOME</a>
+        </div>
+    </div>
+
+    <!-- 平台資訊區域 -->
+    <div class="platforms-section">
+        <div class="platform-group">
+            <div class="platform-item">
+                <span class="platform-text">NOW AVAILABLE</span>
+                <div class="platform-icons">
+                    <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
+                        <img src="./assets/images/steam-icon.png" alt="Steam" class="platform-icon">
+                    </a>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <span class="platform-text">FOLLOW US</span>
+                <div class="platform-icons">
+                    <a href="https://twitter.com/vigilthegame" target="_blank">
+                        <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
+                    </a>
+                    <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                        <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
+                    </a>
+                </div>
+            </div>
+
+            <div class="platform-item">
+                <span class="platform-text">COMING SOON</span>
+                <div class="platform-icons">
+                    <img src="./assets/images/epic-icon.png" alt="Epic Games" class="platform-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版權宣告 -->
+    <div class="copyright-section">
+        <img src="./assets/images/glassheartlogo.png" alt="Glass Heart Games Logo">
+        <span class="copyright-text">© 2024 GLASSHEART LTD. ALL RIGHTS RESERVED.</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const platformsSection = document.querySelector('.platforms-section');
+            const homeButton = document.querySelector('.cta-button');
+            let currentSection = 0;
+            let isScrolling = false;
+
+            // 初始化顯示第一個section
+            showSection(0);
+
+            function showSection(index) {
+                sections.forEach((section, i) => {
+                    const content = section.querySelector('.content');
+                    const background = section.querySelector('.background-image');
+                    
+                    if (i === index) {
+                        content.classList.add('active');
+                        background.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                        background.classList.remove('active');
+                    }
+                });
+
+                // 在最後一個section顯示平台資訊和HOME按鈕
+                if (index === sections.length - 1) {
+                    platformsSection.classList.add('visible');
+                    homeButton.classList.add('visible');
+                } else {
+                    platformsSection.classList.remove('visible');
+                    homeButton.classList.remove('visible');
+                }
+            }
+
+            function handleScroll(event) {
+                if (isScrolling) return;
+
+                isScrolling = true;
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
+
+                const direction = event.deltaY > 0 ? 1 : -1;
+                const nextSection = Math.min(Math.max(currentSection + direction, 0), sections.length - 1);
+
+                if (nextSection !== currentSection) {
+                    currentSection = nextSection;
+                    showSection(currentSection);
+                }
+            }
+
+            window.addEventListener('wheel', handleScroll);
+
+            // 觸控裝置支援
+            let touchStartY = 0;
+            
+            window.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (isScrolling) return;
+
+                const touchEndY = e.touches[0].clientY;
+                const direction = touchStartY > touchEndY ? 1 : -1;
+                
+                if (Math.abs(touchStartY - touchEndY) > 50) {
+                    isScrolling = true;
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, 1000);
+
+                    const nextSection = Math.min(Math.max(currentSection + direction, 0), sections.length - 1);
+                    
+                    if (nextSection !== currentSection) {
+                        currentSection = nextSection;
+                        showSection(currentSection);
+                    }
+                    
+                    touchStartY = touchEndY;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
