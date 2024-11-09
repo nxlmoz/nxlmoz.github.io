@@ -21,7 +21,7 @@
         .section {
             height: 100vh;
             width: 100vw;
-            position: fixed; /* 改為 fixed */
+            position: fixed;
             top: 0;
             left: 0;
             display: flex;
@@ -47,27 +47,27 @@
             opacity: 0;
             transition: opacity 1s ease;
             z-index: 1;
-            display: flex;  /* 添加這行 */
-            justify-content: center;  /* 添加這行 */
-            align-items: center;  /* 添加這行 */
-            overflow: hidden;  /* 添加這行 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
         
         .background-image img {
             width: auto;
-            height: 100vh; /* 設定高度為螢幕高度 */
-            min-width: 100%; /* 確保最小寬度填滿容器 */
-            object-fit: cover; /* 保持比例填滿 */
-            object-position: center; /* 圖片置中 */
+            height: 100vh;
+            min-width: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        /* 針對寬螢幕的情況 */
         @media (min-aspect-ratio: 16/9) {
             .background-image img {
                 width: 100%;
                 height: auto;
             }
         }
+
         .content {
             position: relative;
             z-index: 2;
@@ -76,8 +76,8 @@
             padding: 0 20px;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease; /* 簡化為單一過渡效果 */
-            margin-top: -15vh; /* 新增：整體往上移 */
+            transition: all 0.5s ease;
+            margin-top: -15vh;
         }
 
         .content.active {
@@ -105,32 +105,22 @@
 
         /* 平台資訊區域樣式 */
         .platforms-section {
-            position: fixed;
-            bottom: 200px;
-            left: 0;
-            right: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            z-index: 11;
-            opacity: 0;
-            transition: opacity 1s ease;
-            padding: 0 30px; /* 添加左右內邊距 */
-        }
-
-        .platforms-section.visible {
-            opacity: 1;
+            gap: 40px;
+            z-index: 2;
         }
 
         .platform-group {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 50px;
-            flex-wrap: wrap; /* 允許換行 */
-            max-width: 1200px; /* 限制最大寬度 */
-            margin: 0 auto;
+            gap: 40px;
         }
 
         .platform-item {
@@ -145,7 +135,6 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            margin-top: 30px;
         }
 
         .platform-text {
@@ -154,6 +143,7 @@
             font-weight: 100;
             letter-spacing: 4px;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .platform-icons {
@@ -178,14 +168,14 @@
             z-index: 12;
             display: flex;
             align-items: center;
-            justify-content: center; /* 新增：確保箭頭置中 */
-            width: 50px;  /* 新增：固定寬度 */
-            height: 50px; /* 新增：固定高度 */
+            justify-content: center;
+            width: 50px;
+            height: 50px;
             background: rgba(0, 0, 0, 0.3);
             color: white;
             text-decoration: none;
             border: 1px solid white;
-            border-radius: 25px; /* 改為圓形 */
+            border-radius: 25px;
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
             font-size: 30px;
@@ -194,38 +184,10 @@
 
         .back-button::before {
             content: "↵";
-            line-height: 1; /* 新增：確保箭頭垂直置中 */
+            line-height: 1;
         }
 
         .back-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            text-decoration: none;
-            border: 1px solid white;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            font-size: 20px;
-            cursor: pointer;
-            text-align: center;
-            letter-spacing: 2px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .cta-button.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .cta-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
@@ -241,6 +203,8 @@
             gap: 15px;
             z-index: 11;
             opacity: 0.7;
+            white-space: nowrap;
+            width: fit-content;
         }
 
         .copyright-section img {
@@ -254,17 +218,10 @@
             font-weight: 300;
             letter-spacing: 0.5px;
         }
-        /* 針對較小螢幕的調整 */
-        /* 修改媒體查詢 */
+
         @media screen and (max-width: 768px) {
             .platform-group {
                 gap: 30px;
-                flex-direction: column; /* 在手機版改為垂直排列 */
-            }
-            
-            .social-section {
-                margin-top: 0; /* 移除額外的上邊距 */
-                order: 3; /* 調整顯示順序 */
             }
             
             .platform-text {
@@ -273,10 +230,6 @@
             
             .platform-icon {
                 width: 35px;
-            }
-        
-            .platforms-section {
-                bottom: 80px; /* 稍微往上移 */
             }
         }
     </style>
@@ -333,40 +286,43 @@
         </div>
     </div>
 
-    <!-- 平台資訊區域 -->
-    <div class="platforms-section">
-        <div class="platform-group">
-            <div class="platform-item">
-                <span class="platform-text">NOW AVAILABLE</span>
-                <div class="platform-icons">
-                    <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
-                        <img src="./assets/images/steam-icon.png" alt="Steam" class="platform-icon">
-                    </a>
+    <div class="section" id="section6">
+        <div class="background-image">
+            <img src="./assets/images/intro6.png" alt="Background 6">
+        </div>
+        <div class="platforms-section">
+            <div class="platform-group">
+                <div class="platform-item">
+                    <span class="platform-text">NOW AVAILABLE</span>
+                    <div class="platform-icons">
+                        <a href="https://store.steampowered.com/app/720560/Vigil_The_Longest_Night" target="_blank">
+                            <img src="./assets/images/steam-icon.png" alt="Steam" class="platform-icon">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="social-section">
-                <span class="platform-text">FOLLOW US</span>
-                <div class="platform-icons">
-                    <a href="https://twitter.com/vigilthegame" target="_blank">
-                        <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
-                    </a>
-                    <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
-                        <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
-                    </a>
+                <div class="social-section">
+                    <span class="platform-text">FOLLOW US</span>
+                    <div class="platform-icons">
+                        <a href="https://twitter.com/vigilthegame" target="_blank">
+                            <img src="./assets/images/x-icon.png" alt="X" class="platform-icon">
+                        </a>
+                        <a href="https://www.facebook.com/@VigilTheGame/" target="_blank">
+                            <img src="./assets/images/fb-icon.png" alt="Facebook" class="platform-icon">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="platform-item">
-                <span class="platform-text">COMING SOON</span>
-                <div class="platform-icons">
-                    <img src="./assets/images/epic-icon.png" alt="Epic Games" class="platform-icon">
+                <div class="platform-item">
+                    <span class="platform-text">COMING SOON</span>
+                    <div class="platform-icons">
+                        <img src="./assets/images/epic-icon.png" alt="Epic Games" class="platform-icon">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 版權宣告 -->
     <div class="copyright-section">
         <img src="./assets/images/glassheartlogo.png" alt="Glass Heart Games Logo">
         <span class="copyright-text">© 2024 GLASSHEART LTD. ALL RIGHTS RESERVED.</span>
@@ -375,12 +331,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.section');
-            const platformsSection = document.querySelector('.platforms-section');
-            const homeButton = document.querySelector('.cta-button');
             let currentSection = 0;
             let isScrolling = false;
 
-            // 初始化顯示第一個section
             showSection(0);
 
             function showSection(index) {
@@ -389,43 +342,39 @@
                     const background = section.querySelector('.background-image');
                     
                     if (i === currentSection) {
-                        // 當前區段淡出時，同時向下移動
-                        content.style.opacity = '0';
-                        content.style.transform = 'translateY(20px)';
-                        background.style.opacity = '0';
+                        if (content) {
+                            content.style.opacity = '0';
+                            content.style.transform = 'translateY(20px)';
+                        }
+                        if (background) {
+                            background.style.opacity = '0';
+                        }
                     }
                     
                     setTimeout(() => {
                         if (i === index) {
                             section.classList.add('active');
-                            // 新區段淡入時，從略微上方開始
-                            content.style.transform = 'translateY(-20px)';
-                            content.style.opacity = '0';
-                            
-                            // 短暫延遲後開始向下淡入
-                            setTimeout(() => {
-                                content.style.transform = 'translateY(0)';
-                                content.style.opacity = '1';
+                            if (content) {
+                                content.style.transform = 'translateY(-20px)';
+                                content.style.opacity = '0';
+                                
+                                setTimeout(() => {
+                                    content.style.transform = 'translateY(0)';
+                                    content.style.opacity = '1';
+                                }, 50);
+                            }
+                            if (background) {
                                 background.style.opacity = '1';
-                            }, 50);
-                            
+                            }
                         } else {
                             section.classList.remove('active');
-                            content.classList.remove('active');
-                            background.classList.remove('active');
+                            if (content) content.classList.remove('active');
+                            if (background) background.classList.remove('active');
                         }
-                    }, i === currentSection ? 300 : 0); // 縮短切換時間
+                    }, i === currentSection ? 300 : 0);
                 });
             
-                // 更新當前區段
                 currentSection = index;
-            
-                // 在最後一個section顯示平台資訊和HOME按鈕
-                if (index === sections.length - 1) {
-                    platformsSection.classList.add('visible');
-                } else {
-                    platformsSection.classList.remove('visible');
-                }
             }
             
             function handleScroll(event) {
@@ -434,20 +383,18 @@
                 isScrolling = true;
                 setTimeout(() => {
                     isScrolling = false;
-                }, 800); // 從 1000 改為 800，使滾動更順暢
+                }, 800);
             
                 const direction = event.deltaY > 0 ? 1 : -1;
                 const nextSection = Math.min(Math.max(currentSection + direction, 0), sections.length - 1);
             
                 if (nextSection !== currentSection) {
-                    currentSection = nextSection;
-                    showSection(currentSection);
+                    showSection(nextSection);
                 }
             }
 
             window.addEventListener('wheel', handleScroll);
 
-            // 觸控裝置支援
             let touchStartY = 0;
             
             window.addEventListener('touchstart', (e) => {
@@ -464,13 +411,12 @@
                     isScrolling = true;
                     setTimeout(() => {
                         isScrolling = false;
-                    }, 1000);
+                    }, 800);
 
                     const nextSection = Math.min(Math.max(currentSection + direction, 0), sections.length - 1);
                     
                     if (nextSection !== currentSection) {
-                        currentSection = nextSection;
-                        showSection(currentSection);
+                        showSection(nextSection);
                     }
                     
                     touchStartY = touchEndY;

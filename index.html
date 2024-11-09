@@ -427,6 +427,14 @@
             .platform-icons {
                 margin-top: 12px;
             }
+            .esrb-logo {
+                position: fixed;
+                top: 1vh;
+                right: 1vh;
+                z-index: 5;
+                width: 10vh; /* 改為固定寬度 */
+                height: auto;
+            }  
         }
 
         @media screen and (max-width: 360px) {
@@ -439,6 +447,14 @@
             .platform-icon {
                 width: 30px;
             }
+            .esrb-logo {
+                position: fixed;
+                top: 1vh;
+                right: 1vh;
+                z-index: 5;
+                width: 10vh; /* 改為固定寬度 */
+                height: auto;
+            }  
         }
     </style>
 
@@ -603,7 +619,8 @@
                 './assets/images/intro2.png',
                 './assets/images/intro3.png',
                 './assets/images/intro4.png',
-                './assets/images/intro5.png' 
+                './assets/images/intro5.png',
+                './assets/images/intro6.png' 
             ];
         
             let loadedImages = 0;
