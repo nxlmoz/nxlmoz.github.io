@@ -21,12 +21,21 @@
         }
     
         .loading-logo {
-            width: auto;
-            height: auto;
+            width: 100px; /* 設定合適的大小 */
+            height: 100px;
             opacity: 0.3;
             transition: opacity 0.3s ease;
+            animation: rotate 2s linear infinite; /* 添加旋轉動畫 */
         }
-    
+        /* 添加旋轉動畫關鍵幀 */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
         /* 黑色遮罩 */
         .fade-overlay {
             position: fixed;
@@ -254,6 +263,23 @@
             width: 200px;
             height: auto;
         }        
+        /* 添加隱私政策連結樣式 */
+        .privacy-link {
+            position: fixed;
+            bottom: 60px; /* 調整位置在版權宣告上方 */
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            z-index: 11;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-link:hover {
+            color: white;
+        }
         /* 版權宣告區域樣式 */
         .copyright-section {
             position: fixed;
@@ -380,7 +406,7 @@
 </head>
 <body>
     <div class="loading-screen" id="loadingScreen">
-        <img src="./assets/images/logo.png" alt="Logo" class="loading-logo" id="loadingLogo">
+        <img src="./assets/images/holysix.png" alt="Logo" class="loading-logo" id="loadingLogo">
     </div>
     <!-- 中央 Logo 和按鈕區域 -->
     <div class="center-content">
@@ -443,7 +469,9 @@
         <div class="texture-overlay"></div>
         <!-- ESRB logo -->
         <img src="./assets/images/esrb.png" alt="ESRB Rating" class="esrb-logo">
-    
+
+        <a href="privacy.html" class="privacy-link">PRIVACY POLICY</a>
+
         <!-- 修正版權宣告區域 -->
         <div class="copyright-section">
             <img src="./assets/images/glassheartlogo.png" alt="Glass Heart Games Logo">

@@ -91,6 +91,7 @@
 
         h2 {
             font-size: 36px;
+            line-height: 1.5;
             margin-bottom: 20px;
             letter-spacing: 2px;
             color: #FFD700;
@@ -98,14 +99,14 @@
 
         p {
             font-size: 18px;
-            line-height: 1.6;
+            line-height: 2;
             margin-bottom: 30px;
         }
 
         /* 平台資訊區域樣式 */
         .platforms-section {
             position: fixed;
-            bottom: 100px;
+            bottom: 200px;
             left: 0;
             right: 0;
             display: flex;
@@ -169,31 +170,38 @@
         .platform-icon:hover {
             transform: scale(1.1);
         }
-        /* 新增 HOME 按鈕的樣式 */
-        .home-button {
+
+        .back-button {
             position: fixed;
             top: 30px;
             left: 30px;
             z-index: 12;
-            display: inline-block;
-            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 新增：確保箭頭置中 */
+            width: 50px;  /* 新增：固定寬度 */
+            height: 50px; /* 新增：固定高度 */
             background: rgba(0, 0, 0, 0.3);
             color: white;
             text-decoration: none;
             border: 1px solid white;
-            border-radius: 20px;
+            border-radius: 25px; /* 改為圓形 */
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
-            font-size: 20px;
+            font-size: 30px;
             cursor: pointer;
-            text-align: center;
-            letter-spacing: 2px;
         }
-        
-        .home-button:hover {
+
+        .back-button::before {
+            content: "↵";
+            line-height: 1; /* 新增：確保箭頭垂直置中 */
+        }
+
+        .back-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
+
         .cta-button {
             display: inline-block;
             padding: 8px 16px;
@@ -274,7 +282,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="home-button">HOME</a>
+    <a href="index.html" class="back-button"></a>
     <div class="section" id="section1">
         <div class="background-image">
             <img src="./assets/images/intro1.png" alt="Background 1">
